@@ -1,7 +1,8 @@
 
 /* main container of the navbar */
 .navbarContainer{
-    background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5 51%, #00d2ff 100%);
+    /* background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5 51%, #00d2ff 100%); */
+    background-image: black;
     width: 90%;
     height: 50px;
     display: flex;

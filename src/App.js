@@ -31,12 +31,13 @@ function App() {
         { path:"/signin", element: <SignIn />},
         { path:"/signup", element: <SignUp />},
       ]
-    },
-    {
-      // Specify the base URL with the repository name
-      basename: '/Ecomartweb'
     }
-  ]);
+  ],
+  {
+    // Specify the base URL with the repository name
+    basename: '/Ecomartweb'
+  }
+  );
 
   return (
     <>

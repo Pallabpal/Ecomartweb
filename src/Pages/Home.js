@@ -49,7 +49,7 @@ export function Home(){
                 <input type="text" 
                     placeholder="Search Item..." 
                     value={search}
-                    onChange={(e) => setSearch(e.target.value)}/>
+                    onChange={(e) => setSearch(e.target.value.toLowerCase())}/>
 
                 {/* apply filter button  */}
                 {/* show/hide on button click */}

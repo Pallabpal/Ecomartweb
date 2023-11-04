@@ -32,6 +32,7 @@ function App() {
         { path:"/signup", element: <SignUp />},
       ]
     }
+    
   ],
   {
     // Specify the base URL with the repository name

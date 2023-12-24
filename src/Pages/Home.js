@@ -32,7 +32,7 @@ export function Home(){
     useEffect(()=>{
         setTimeout(()=>{
             setLoading(false);
-        },400);            
+        },300);            
     },[]);
 
 

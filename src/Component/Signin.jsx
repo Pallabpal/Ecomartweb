@@ -1,5 +1,7 @@
 import React from 'react';
 import {db} from '../Firebase/config'
+// import {db} from '../Firebase/config'
+// import {  doc, getDoc } from "firebase/firestore";
 import {   collection, onSnapshot } from "firebase/firestore";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,6 +13,7 @@ const Signin = () => {
     const [formData, setformData]=useState({email:'', password: ''});
     const [data, setData]=useState();
     const navigate = useNavigate();
+    // const [login, setLogin]=useState(null);
     const {getValue} = useValue();
     
 
@@ -28,6 +31,7 @@ const Signin = () => {
       });
     
     },[])
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         

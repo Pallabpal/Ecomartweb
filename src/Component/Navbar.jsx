@@ -2,10 +2,37 @@ import React from 'react';
 // import { useState } from 'react';
 import { useValue } from '../Logincontext/Logincontext';
 import { Outlet, Link } from 'react-router-dom';
-
+import {db} from '../Firebase/config'
+import { useEffect } from 'react';
+import {   collection, onSnapshot } from "firebase/firestore";
+// import { useValue } from '../Logincontext/Logincontext';
+import {useNavigate} from 'react-router-dom';
 export default function Navbar() {
-  const {userData, cart, handleLogout}=useValue();
-
+  const {userData, cart, handleLogout, getValue}=useValue();
+  const navigate=useNavigate();
+  useEffect(()=>{
+    const jsonString = localStorage.getItem('myob');
+    const myob = JSON.parse(jsonString);
+    // setLogin(myob);
+    if(myob){
+      onSnapshot(collection(db, "products"), (snapShot) => {
+        const products= snapShot.docs.map((doc)=>{
+        return{
+            id:doc.id,
+            ...doc.data()
+        }
+      })
+      
+      products.forEach(value=>{
+        if(value.id===myob.value.id){
+          getValue(value);
+          navigate('/');
+          return;
+        }
+      })
+    })
+    }                
+},[])
   return (
     <div>
       <nav className="navbar navbar-expand-lg shadow-sm position-sticky" style={{ top: 0, background: "#f7ecec", zIndex:"100" }}>

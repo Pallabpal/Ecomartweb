@@ -13,7 +13,7 @@ import Signin from './Component/Signin';
 import Signup from './Component/Signup';
 import CustomItemContext from './Logincontext/Logincontext';
 import Profile from './Component/Profile';
-import AlreadyLogin from './Component/alreadyLogin.js';
+// import AlreadyLogin from './Component/alreadyLogin.js';
 import CartPage from './Component/Cart.jsx';
 import OrderPage from './Component/Order';
 import ProductDetails from './Component/Details';
@@ -28,7 +28,7 @@ function App() {
   // State variables using hooks
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [login, setLogin] = useState(null);
+  // const [login, setLogin] = useState(null);
   const { store, setStore } = useLocalstorage();
 
   // Fetching data on component mount
@@ -37,9 +37,9 @@ function App() {
       const response = await fetch('https://dummyjson.com/products?limit=100');
       const d = await response.json();
       setData(d.products);
-      const jsonString = localStorage.getItem('myob');
-      const myob = JSON.parse(jsonString);
-      setLogin(myob);
+      // const jsonString = localStorage.getItem('myob');
+      // const myob = JSON.parse(jsonString);
+      // setLogin(myob);
       setLoading(false);
     }
     fetchData();
@@ -69,7 +69,7 @@ function App() {
         { path: '/Ecomart/myorders', element: <OrderPage /> },
         { path: '/Ecomart/about', element: <AboutPage /> },
         { path: '/Ecomart/contact', element: <ContactPage /> },
-        { path: '/', element: login !== null ? <AlreadyLogin /> : null }
+        // { path: '/', element: login !== null ? <AlreadyLogin /> : null }
       ]
     },
   ],

@@ -1,42 +1,35 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  min-width: 950px;
-  background-image: linear-gradient(to top, #fff1eb 0%, #caeeff 100%);
-  background-attachment: fixed;
+body{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+}
+.link{
+   text-decoration: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/* Navbar.module.css */
+/* .navbar {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 100;
+  } */
+  
+  /* Add more styles as needed */
 
-/* common button styles */
-button{
-  cursor: pointer;
-  box-shadow: 0px 0px 3px 0px grey;
-  border-radius: 4px;
-}
-
-
-/* common input styles */
-input:focus{
-  outline: none;
-}
-
-/* styles for all the links */
-a{
-  text-decoration: none;
-}
-
-/* styles for all the icons */
-i{
-  cursor: pointer;
-}
-
-
-
+  .displaydesc{
+   /* background-color: aqua; */
+   height: 100vh;
+   overflow: auto;
+   position: sticky;
+   height: 50vh;
+   /* background-color: aqua; */
+   top:70px;
+   
+   z-index: 1000;
+  }
+  .related{
+   width:40%;
+  }

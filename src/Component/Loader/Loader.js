@@ -17,7 +17,7 @@ export default function Loader() {
                     zIndex:"999"}}>
         <div>
           {/* show spinner */}
-          <Spinner radius={80} color={"blue"} stroke={2} visible={true} />
+          <Spinner radius={80} color={"red"} stroke={2} visible={true} />
           {/* show message below the spinner */}
           <h4>Loading..</h4>
         </div>

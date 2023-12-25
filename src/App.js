@@ -1,57 +1,107 @@
-
-// react router
-import { createBrowserRouter,RouterProvider } from "react-router-dom";
-
-// custom context provider (authentication and product)
-import { AuthContext } from "./authContext";
-import { ProductContext } from "./productContext";
-
-// all the pages and component to render
-import Navbar from "./Component/Navbar/Navbar";
-import { Home } from "./Pages/Home";
-import {MyOrder} from "./Pages/MyOrder";
-import {Cart} from "./Pages/Cart";
-import {SignIn} from "./Pages/SignIn";
-import { SignUp } from "./Pages/SignUp";
-import { Error } from "./Pages/Error";
-
-// main app function 
-function App() {
-
-  // all the link routes
-  const router = createBrowserRouter([
-    {
-      path:"/", 
-      element: <Navbar />,
-      errorElement: <Error />,
-      children:[
-        { index:true, element: <Home />},
-        { path:"/myorder", element: <MyOrder />},
-        { path:"/cart", element: <Cart />},
-        { path:"/signin", element: <SignIn />},
-        { path:"/signup", element: <SignUp />},
-      ]
-    }
-    
-  ],
-  {
-    // Specify the base URL with the repository name
-    basename: '/Ecomartweb'
+import './App.css'
+import Navbar from "./Component/Navbar";
+import Product from './Component/product';
+import Signin from './Component/Signin';
+import Signup  from './Component/Signup';
+// import { useValue } from './Logincontext/Logincontext';
+import CustomItemContext from './Logincontext/Logincontext';
+import { ToastContainer } from 'react-toastify';
+import Profile from './Component/Profile';
+// import Profile from './Component/Profile';
+// import { useState } from 'react';
+import AlreadyLogin from './Component/alreadyLogin.js';
+import CartPage from './Component/Cart.jsx';
+import OrderPage from './Component/Order';
+import ProductDetails from './Component/Details';
+import { useEffect, useState } from 'react';
+import Loader from './Component/Loader/Loader';
+// import Homepage from './Component/Home';
+import useLocalstorage from './Customhook/useLocalstorage';
+// import {db} from '../Firebase/config'
+// import {   collection, onSnapshot } from "firebase/firestore";
+// import { onSnapshot, collection } from 'firebase/firestore';
+// import { db } from './Firebase/config';
+import { createBrowserRouter , RouterProvider} from "react-router-dom";
+// import useLocalstorage from './Customhook/useLocalstorage';
+function App(){
+    //  const {userData}=useValue(); 
+    //  console.log(useValue);
+    const [data, setData] = useState([]);
+    const [loading, setLoading]=useState(true);
+    const [login, setLogin]=useState(null);
+    const {store,setStore}=useLocalstorage();
+    useEffect(() => {
+      async function fetchData() {
+        const response = await fetch('https://dummyjson.com/products?limit=100');
+        const d = await response.json();
+        setData(d.products);
+        const jsonString = localStorage.getItem('myob');
+        const myob = JSON.parse(jsonString);
+        setLogin(myob);
+        setLoading(false);
+      }
+      fetchData();
+    }, []);    
+  
+  const handleStore=()=>{
+    setStore({email:'', password: ''});
   }
-  );
+    const router = createBrowserRouter(
+        [
+            {
+               path:'/',
+               element:
+               
+               <CustomItemContext>
+                <Navbar />
+               </CustomItemContext>
+               ,
 
-  return (
-    <>
-    {/* custom authContext provider */}
-      <AuthContext>
-        {/* custom product context provider */}
-        <ProductContext>
-          {/* routes */}
-          <RouterProvider router={router} />    
-        </ProductContext>
-      </AuthContext>
-    </>
-  );
+               children:[
+                  {
+                    path:'/Ecomart/signin', element:<Signin  />
+                  },
+                  {
+                      path:'/Ecomart/signup', element:<Signup/>
+                  },
+                  {
+                    path:'/Ecomart/myprofile', element:<Profile/>
+                 },
+                {
+                    path:'/', element:loading?<Loader />:
+                    <Product data={data} store={store} handleStore={handleStore} />
+                },
+               {
+                 path:'/details', element:<ProductDetails/>
+               },
+                        
+                {
+                  path:'/Ecomart/cart', element:<CartPage />,
+                 
+                },
+                {
+                    path:'/Ecomart/myorders', element:<OrderPage />,
+                },
+                {
+                  path: '/', element: login !== null ? <AlreadyLogin /> : null
+                }
+                              
+                
+               ]
+            },
+        ],
+        {
+          basename: '/Ecomartweb'
+        }
+    )
+    return (
+       <>
+        <RouterProvider router={router} />
+        <ToastContainer />
+        </>
+       
+      
+    )
 }
 
 export default App;

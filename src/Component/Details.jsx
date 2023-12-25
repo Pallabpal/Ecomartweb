@@ -1,10 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import { useContext } from 'react';
-// import { useParams } from 'react-router-dom';
 import { useValue } from '../Logincontext/Logincontext';
 import StarRating from './Starrating';
-// import { productContext } from '../Logincontext/Productcontext';
 const ProductDetails = () => {
     const {displayitem}= useValue();
     console.log(displayitem);

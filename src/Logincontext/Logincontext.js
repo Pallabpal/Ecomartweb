@@ -1,5 +1,4 @@
 import { createContext, useState, useContext} from "react";
-// import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import {db} from '../Firebase/config'
@@ -17,27 +16,8 @@ function CustomItemContext({children, handleStore}){
   const navigate = useNavigate();
     const [userData, setUserData] =useState(null);
     const [cart, setcart]=useState([]);
-    const [order, setOrder]=useState([]);
-    
+    const [order, setOrder]=useState([]);    
     const [displayitem, setDisplayitem]=useState(null);
-    
-    // useEffect(()=>{
-    //   const jsonString = localStorage.getItem('myob');
-    //   const myob = JSON.parse(jsonString);
-    //   if(myob){
-    //     // setlogin(myob.value);
-    //       const  alreadyLogin=async ()=>{
-    //       const id =myob.value.id;
-    //       const docRef = doc(db, "products", id); 
-    //       const docSnap = await getDoc(docRef);
-    //       const existingData = docSnap.data();
-    //       getValue(existingData);
-    //     }
-    //     alreadyLogin();
-        
-       
-    //   } 
-    // },[])
     function getValue(data){     
         setUserData(data);
         setcart(data.cart);
@@ -83,11 +63,6 @@ function CustomItemContext({children, handleStore}){
               });
             console.log("Cart updated successfully!");
         }
-
-          
-          
-
-        
       };
     const handleCart=(product)=>{
         if(userData){
@@ -103,10 +78,7 @@ function CustomItemContext({children, handleStore}){
     }
     const removeCart=async(newCart)=>{
         const userId = userData.id; 
-        const docRef = doc(db, "products", userId); 
-        // const docSnap = await getDoc(docRef);
-        // const existingData = docSnap.data();
-        // const ind = existingData.cart.findIndex((item)=>item.id===product.id);
+        const docRef = doc(db, "products", userId);
         setcart(newCart);
         setUserData({ ...userData, cart: newCart });
         await updateDoc(docRef, {
@@ -137,14 +109,9 @@ function CustomItemContext({children, handleStore}){
         
     }
     const handleOrder = async (product) => {
-        const userId = userData.id; 
-        const docRef = doc(db, "products", userId); 
-        
-        // Check if the document exists
-        const docSnap = await getDoc(docRef);
-      
-      
-          // If the document exists, update the cart field
+          const userId = userData.id; 
+          const docRef = doc(db, "products", userId); 
+          const docSnap = await getDoc(docRef);
           const existingData = docSnap.data();
           const ind = existingData.orders.findIndex((item)=>item.id===product.id);
           
@@ -154,7 +121,7 @@ function CustomItemContext({children, handleStore}){
             toast.success('Item added exists',{
               position: toast.POSITION.TOP_RIGHT,
             });
-            // setTotal((prev)=>prev+(product.price*product.ordqty));
+            
             setOrder(newCart);
             setUserData({ ...userData, orders: newCart });
             await updateDoc(docRef, {
@@ -166,26 +133,20 @@ function CustomItemContext({children, handleStore}){
             toast.success('Item added',{
               position: toast.POSITION.TOP_RIGHT,
             });
-            // setTotal((prev)=>prev+(product.price*product.ordqty));
+           
             setOrder(newCart);
             setUserData({ ...userData, orders: newCart });
             await updateDoc(docRef, {
             orders: newCart,
             });
           }
-          
-          
-          
-        //  console.log(order)
           console.log("Orders updated successfully!");
         
       };
     const handleLogout=()=>{
         setOrder()
         setUserData(null);
-        // const jsonString = localStorage.getItem('myob');
-        // const myob = JSON.parse(jsonString);
-        // console.log(myob.value.email);
+        
         localStorage.clear();
         navigate('/');
     }

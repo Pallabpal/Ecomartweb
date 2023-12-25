@@ -22,10 +22,10 @@ export default function Navbar() {
                 <Link to='/' className="nav-link" style={{ textDecoration: 'none', lineHeight: '40px' }}>Home</Link>
               </li>
               <li className="nav-item">
-                <Link to='/' className="nav-link" style={{ textDecoration: 'none', lineHeight: '40px' }}>About</Link>
+                <Link to='/Ecomart/about' className="nav-link" style={{ textDecoration: 'none', lineHeight: '40px' }}>About</Link>
               </li>
               <li className="nav-item">
-                <Link to='/' className="nav-link" style={{ textDecoration: 'none', lineHeight: '40px' }}>Contact</Link>
+                <Link to='/Ecomart/contact' className="nav-link" style={{ textDecoration: 'none', lineHeight: '40px' }}>Contact</Link>
               </li>
             </ul>
 
@@ -66,10 +66,6 @@ export default function Navbar() {
               </Link>
             </div>
             }
-           
-
-
-
           </div>
         </div>
       </nav>

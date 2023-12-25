@@ -42,19 +42,6 @@ const Profile = () => {
                                 <td>{new Date(item.created).toLocaleDateString()}</td>
                         </tr>
                         )}
-                            {/* <tr>
-                                <td>1</td>
-                                <td>Product A</td>
-                                <td>$50.00</td>
-                                <td>2023-10-24</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Product B</td>
-                                <td>$35.00</td>
-                                <td>2023-10-22</td>
-                            </tr> */}
-                          
                         </tbody>
                     </table>
                 </div>

@@ -1,14 +1,11 @@
 import styles from '../styles/Product.module.css'
-// import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useValue } from '../Logincontext/Logincontext'
 import StarRating from './Starrating';
 import { Link } from 'react-router-dom';
 import { productContext } from '../Logincontext/Productcontext';
-// import { useNavigate } from 'react-router-dom';
 export default function Homepage(props){ 
     const { handleCart}=useValue();
-    // const navigate = useNavigate();
     const {data, handleSelected} =props
     
     return(
@@ -29,7 +26,6 @@ export default function Homepage(props){
                 <button className={styles.btn} onClick={()=>handleCart(data)}>Add To Cart</button>
                 
             </div>
-            {/* <ToastContainer /> */}
         </div>
         </productContext.Provider>
       

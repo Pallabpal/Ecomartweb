@@ -1,5 +1,5 @@
 // Importing CSS file
-import './App.css';
+// import './App.css';
 
 // Importing React and other components
 import React, { useEffect, useState } from 'react';
